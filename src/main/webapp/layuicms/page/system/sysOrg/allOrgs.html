@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>机构管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
+    <link rel="stylesheet" href="../../../common/css/user.css" media="all"/>
+</head>
+<style type="text/css">
+    .layui-form-item .layui-inline {
+        width: 33.333%;
+        float: left;
+        margin-right: 0;
+    }
+
+    @media (max-width: 1240px) {
+        .layui-form-item .layui-inline {
+            width: 100%;
+            float: none;
+        }
+    }
+    .org-tree{
+       display: inline-block;
+        margin-left: 2px;
+        width: 250px;
+        height: 400px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        overflow: auto;
+        background-color: #f2f2f2;
+    }
+    .org-detail{
+        display: inline-block;
+        height: 400px;
+        width: 485px;
+        padding: 10px;
+        margin-left: 10px;
+        vertical-align: top;
+    }
+    .site-tips{
+        margin-bottom: 10px;
+        line-height: 22px;
+        border-left: 5px solid #0078AD;
+    }
+</style>
+<body class="childrenBody">
+<!--搜索栏-->
+<blockquote class="layui-elem-quote news_search">
+    <form class="layui-form">
+        <div class="layui-inline">
+            <label class="layui-form-label">机构名称</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="organizeName" placeholder="请输入机构名称">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn search_btn" lay-submit="" lay-filter="queryOrg">查询</a>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal add_btn">添加</a>
+        </div>
+    </form>
+</blockquote>
+<!--机构树-->
+<div class="org-tree">
+    <ul id="org-tree" class="layui-box layui-tree"></ul>
+</div>
+<!--机构详情-->
+<div class="site-tips org-detail">
+    <form class="layui-form">
+        <!--保存id-->
+        <input type="hidden" name="id">
+        <div class="layui-form-item">
+            <label class="layui-form-label">机构名称</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="orgName" lay-verify="required" placeholder="请输入机构名称">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">机构编码</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="orgCode" readonly="readonly" lay-verify="required" placeholder="请输入机构编码">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">树路径</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="treePath" readonly="readonly" lay-verify="required" placeholder="请输入树路径">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn " lay-submit="" lay-filter="editOrg">保存</button>
+                <button class="layui-btn layui-btn-danger"  lay-submit="" lay-filter="delOrg">删除机构</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--一般情况下，一个业务页面引入一个layui.js,config.js和业务js这三个js就够了-->
+<script type="text/javascript" src="../../../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../../../common/js/config.js"></script>
+<script type="text/javascript" src="allOrgs.js"></script>
+</body>
+</html>

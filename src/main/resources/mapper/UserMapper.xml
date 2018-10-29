@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--mapper映射-->
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.system.UserMapper">
+    <!--结果集映射-->
+    <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.system.UserTest">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="REAL_NAME" property="realName" jdbcType="VARCHAR"/>
+        <result column="IS_FORBIDDEN" property="isForbidden" jdbcType="VARCHAR"/>
+        <result column="ORG_ID" property="orgId" jdbcType="VARCHAR"/>
+        <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR"/>
+        <result column="MOBILE" property="mobile" jdbcType="VARCHAR"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_DATE" property="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    ID,LOGIN_NAME,PASSWORD,REAL_NAME,IS_FORBIDDEN,ORG_ID,ORG_NAME,MOBILE,CREATE_DATE,UPDATE_DATE
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from USER_TEST
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="countUserByNameAndPwd" resultType="Integer" parameterType="map">
+        <!--
+         自己编写SQL，resultType是返回的字段类型，parameterType是请求的参数类型。
+         loginName，password对应于mapper里面的参数名称
+        -->
+        select count(1) from USER_TEST t WHERE
+        t.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+        AND t.PASSWORD = #{password,jdbcType=VARCHAR}
+    </select>
+    <select id="getByLoginName" resultMap="BaseResultMap" parameterType="map">
+        <!--
+         自己编写SQL，resultType是返回的字段类型，parameterType是请求的参数类型。
+         loginName，password对应于mapper里面的参数名称
+        -->
+        select * from USER_TEST t WHERE
+        t.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+    </select>
+    <!--mysql版本
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from USER_TEST t
+        where 1=1
+        <if test="loginName != null and loginName != ''">
+            and t.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="realName != null and realName != ''">
+            and t.REAL_NAME = #{realName,jdbcType=VARCHAR}
+        </if>
+        <if test="isForbidden != null and isForbidden != ''">
+            and t.IS_FORBIDDEN = #{isForbidden,jdbcType=VARCHAR}
+        </if>
+        order by t.UPDATE_DATE desc,t.id desc
+        limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+    </select>
+    -->
+    <!--oracle版本-->
+    <select id="getAll" resultMap="BaseResultMap">
+        select a.* from(
+        select b.*,rownum row_num
+        from( select * from USER_TEST t
+        where 1=1
+        <if test="loginName != null and loginName != ''">
+            and t.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="realName != null and realName != ''">
+            and t.REAL_NAME = #{realName,jdbcType=VARCHAR}
+        </if>
+        <if test="isForbidden != null and isForbidden != ''">
+            and t.IS_FORBIDDEN = #{isForbidden,jdbcType=VARCHAR}
+        </if>
+        order by t.UPDATE_DATE desc,t.id desc
+        ) b
+        where rownum &lt; #{end,jdbcType=DECIMAL}
+        )a where row_num &gt; #{start,jdbcType=DECIMAL}
+    </select>
+    <select id="countGetAll" parameterType="map" resultType="Integer">
+        select count(1) from USER_TEST t
+        where 1=1
+        <if test="loginName != null and loginName != ''">
+            and t.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="realName != null and realName != ''">
+            and t.REAL_NAME = #{realName,jdbcType=VARCHAR}
+        </if>
+        <if test="isForbidden != null and isForbidden != ''">
+            and t.IS_FORBIDDEN = #{isForbidden,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from USER_TEST
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.gameloft9.demo.dataaccess.model.system.UserTest">
+    insert into USER_TEST (ID, LOGIN_NAME, PASSWORD,
+    REAL_NAME, IS_FORBIDDEN, MOBILE,
+    ICON, ORG_ID, ORG_NAME,
+    CREATE_DATE, UPDATE_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    #{realName,jdbcType=VARCHAR}, #{isForbidden,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+    #{icon,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR},
+    #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.gameloft9.demo.dataaccess.model.system.UserTest">
+        insert into USER_TEST
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="loginName != null">
+                LOGIN_NAME,
+            </if>
+            <if test="password != null">
+                PASSWORD,
+            </if>
+            <if test="realName != null">
+                REAL_NAME,
+            </if>
+            <if test="isForbidden != null">
+                IS_FORBIDDEN,
+            </if>
+            <if test="mobile != null">
+                MOBILE,
+            </if>
+            <if test="icon != null">
+                ICON,
+            </if>
+            <if test="orgId != null">
+                ORG_ID,
+            </if>
+            <if test="orgName != null">
+                ORG_NAME,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+            <if test="updateDate != null">
+                UPDATE_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="isForbidden != null">
+                #{isForbidden,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="orgName != null">
+                #{orgName,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gameloft9.demo.dataaccess.model.system.UserTest">
+        update USER_TEST
+        <set>
+            <if test="loginName != null">
+                LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                REAL_NAME = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="isForbidden != null">
+                IS_FORBIDDEN = #{isForbidden,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                MOBILE = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                ICON = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                ORG_ID = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="orgName != null">
+                ORG_NAME = #{orgName,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gameloft9.demo.dataaccess.model.system.UserTest">
+    update USER_TEST
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+    PASSWORD = #{password,jdbcType=VARCHAR},
+    REAL_NAME = #{realName,jdbcType=VARCHAR},
+    IS_FORBIDDEN = #{isForbidden,jdbcType=VARCHAR},
+    MOBILE = #{mobile,jdbcType=VARCHAR},
+    ICON = #{icon,jdbcType=VARCHAR},
+    ORG_ID = #{orgId,jdbcType=VARCHAR},
+    ORG_NAME = #{orgName,jdbcType=VARCHAR},
+    CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+    UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>角色管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
+    <link rel="stylesheet" href="../../../common/css/user.css" media="all"/>
+</head>
+<body class="childrenBody">
+<!--搜索栏-->
+<blockquote class="layui-elem-quote news_search">
+    <form class="layui-form">
+        <div class="layui-inline">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="roleName" placeholder="请输入角色名称">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">超级管理员</label>
+            <div class="layui-input-block">
+                <select name="isSuper" >
+                    <option value="">--请选择--</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn search_btn" lay-submit="" lay-filter="queryRole">查询</a>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal usersAdd_btn">添加角色</a>
+        </div>
+    </form>
+</blockquote>
+<!--表格区-->
+<div class="layui-form users_list">
+    <!--通过lay-filter区分toolbar事件容器-->
+    <table id="role-data" lay-filter="roleFilter" class="layui-table">
+    </table>
+</div>
+<!--分页元素-->
+<div id="page"></div>
+<!--toolbar 模板-->
+<script type="text/html" id="barDemo">
+    <!--通过lay-event定义事件-->
+    <a class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+</script>
+<!--超级管理员模板-->
+<script type="text/html" id="tmp">
+    {{#  if(d.isSuper === '1'){ }}
+         是
+    {{#  } else { }}
+       否
+    {{#  } }}
+</script>
+<!--一般情况下，一个业务页面引入一个layui.js,config.js和业务js这三个js就够了-->
+<script type="text/javascript" src="../../../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../../../common/js/config.js"></script>
+<script type="text/javascript" src="allRoles.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- 配置shrio的验证，这里使用完全自定义的实现 -->
+    <bean id="shiroRealm" class="com.gameloft9.demo.security.ShiroRealm">
+        <property name="userServiceImpl" ref="sysUserServiceImpl"/>
+    </bean>
+
+    <!--也可以使用JdbcRealm，少写点代码-->
+    <!--<bean id="shiroRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="authenticationQuery" value="select password from USER_TEST  WHERE login_name = ?"/>-->
+        <!--<property name="userRolesQuery" value="select r.role_name from SYS_ROLE_TEST r where r.id in( select t.role_id from SYS_USER_ROLE_TEST t where t.user_id = (select id from user_test where login_name = ?)) and r.is_deleted = '0'"/>-->
+    <!--</bean>-->
+
+    <!-- 配置shrio的验证管理 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realms">
+            <list>
+                <ref bean="shiroRealm"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置shrio的过滤功能，通过javaconfig实现，不放在xml中配置
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"></bean>
+    -->
+
+    <!--自定义filter-->
+    <bean id="roleOrFilter" class="com.gameloft9.demo.security.RoleOrAuthorizationFilter" />
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+</beans>
