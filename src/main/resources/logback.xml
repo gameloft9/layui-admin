@@ -35,23 +35,9 @@
 				</encoder>
 			</appender>
 
-			<!--输出到文件-->
-			<appender name="rollingFile"
-					  class="ch.qos.logback.core.rolling.RollingFileAppender">
-				<file>../log/${ServerName}/${AppName}.log</file>
-				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-					<fileNamePattern>../log/${ServerName}/${AppName}.log.%d{yyyy-MM-dd}</fileNamePattern>
-					<maxHistory>7</maxHistory>
-				</rollingPolicy>
-				<encoder>
-					<pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36}:%X{sysUser} - %msg%n</pattern>
-				</encoder>
-			</appender>
-
 			<!--根loger，没有Loger则默认用此loger,打info级别用户日志-->
 			<root level="INFO">
 				<appender-ref ref="console" />
-				<appender-ref ref="rollingFile" />
 			</root>
 		</else>
 	</if>
