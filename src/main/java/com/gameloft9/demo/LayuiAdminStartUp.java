@@ -30,7 +30,7 @@ public class LayuiAdminStartUp {
         SpringApplication app = new SpringApplication(LayuiAdminStartUp.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.setWebApplicationType(WebApplicationType.SERVLET);
-        Set<String> sources = new HashSet<>();
+        Set<String> sources = new HashSet<String>();
         sources.add("classpath:applicationContext.xml");
         app.setSources(sources);
 
@@ -51,7 +51,7 @@ public class LayuiAdminStartUp {
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
                 XmlWebApplicationContext context = new XmlWebApplicationContext();
-                context.setConfigLocations(new String[]{"applicationContext-springmvc.xml"});
+                context.setConfigLocations(new String[]{"classpath:applicationContext-springmvc.xml"});
                 DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
                 ServletRegistration.Dynamic dispatcher = servletContext
                         .addServlet("dispatcher", dispatcherServlet);
@@ -72,7 +72,7 @@ public class LayuiAdminStartUp {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(
                 new org.springframework.web.filter.DelegatingFilterProxy());
         filterRegistrationBean.addUrlPatterns("/*");
-        filterRegistrationBean.setName("springSessionRepositoryFilter");
+        filterRegistrationBean.setName("myShiroFilter");
         filterRegistrationBean.addInitParameter("targetFilterLifecycle","true");
 
         return filterRegistrationBean;

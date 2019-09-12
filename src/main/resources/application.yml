@@ -1,8 +1,6 @@
 spring:
   profiles:
     active: local
-server:
-  port: 8888
 
 
 SERVER_NAME: manager

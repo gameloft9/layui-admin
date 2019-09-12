@@ -4,6 +4,14 @@
 # 博客地址
 [https://blog.csdn.net/GAMEloft9/article/details/79045636](https://blog.csdn.net/GAMEloft9/article/details/79045636)
 
+# 部署步骤
+后端应用部署大家应该都很熟悉了，这里仅对前后的分离下的前端部署作一个说明：
+1、修改layuicms/common/js/config.js，修改生产和测试环境的api请求地址和前端资源请求地址
+2、将layuicms包部署至nginx服务器上，并配置访问连接，避免发生跨域问题。
+
+如果是本地测试，可以直接将资源访问地址改成后台地址，然后启动应用后直接访问http://xxx.xxx.xxx.xxx:xxxx/manager/layuicms/login.html即可。
+layuicms在webapp目录下，因此这种方式类似于传统web开发。
+
 # 更新说明 #
 
 ## v1.0  ##
@@ -46,3 +54,6 @@
 3、初始化数据修改
 
 4、修复session失效后，login页面和index页面不停来回跳转bug
+
+## v.1.3.0
+1、项目改用spring-boot启动方式
