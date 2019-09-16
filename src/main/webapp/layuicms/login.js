@@ -53,15 +53,16 @@ layui.config({
     /**
      * 更换验证码
      * */
-    $('.code img').click(function () {
-        this.src = $tool.getContext() + 'getVCode';
+    $('.code').click(function () {
+        var suffix = Date.now();
+        $('.code').find('img').prop('src',$tool.getContext() + 'getVCode?version=' + suffix);
     });
 
     function init() {
         if(isLogin()){ // 已经登录过直接跳转到首页
             window.location.href = $tool.getResUrl()+"layuicms/index.html";
         }else{
-            $('.code img').click(); //获取验证码
+            $('.code').click(); //获取验证码
         }
     }
     init();

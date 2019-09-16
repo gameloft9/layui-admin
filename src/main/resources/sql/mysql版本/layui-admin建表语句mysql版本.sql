@@ -44,11 +44,12 @@ INSERT INTO `sys_access_permission_test` VALUES ('3', '/login', 'anon', 3, 0, 'a
 INSERT INTO `sys_access_permission_test` VALUES ('4', '/role/*', 'authc,roles[admin]', 5, 0, 'admin', '2017-12-25 16:41:08', 'admin', '2017-12-25 16:41:08');
 INSERT INTO `sys_access_permission_test` VALUES ('5', '/getVCode', 'anon', 4, 0, 'admin', '2017-12-25 16:41:09', 'admin', '2017-12-25 16:41:09');
 INSERT INTO `sys_access_permission_test` VALUES ('6', '/**/*.do', 'authc', 999, 0, 'admin', '2017-12-25 16:41:09', 'admin', '2017-12-25 16:41:09');
-INSERT INTO `sys_access_permission_test` VALUES ('6319f8a7688343139ac4ba0d40877e2c', 'sys/*', 'authc,roles[test,admin]', 201, 0, 'gameloft9', '2017-12-28 11:04:58', NULL, '2017-12-28 11:04:58');
-INSERT INTO `sys_access_permission_test` VALUES ('7042e4eeebf5433388ddfdfb09764369', 'log/*', 'authc,roles[test,admin]', 419, 0, 'gameloft9', '2017-12-27 17:04:10', NULL, '2017-12-27 17:04:10');
-INSERT INTO `sys_access_permission_test` VALUES ('7c1f21aa63cf4fd6a5be43072e81ab99', 'test/*', 'authc,roles[test,admin]', 135, 0, 'gameloft9', '2017-12-28 11:05:10', NULL, '2017-12-28 11:05:10');
-INSERT INTO `sys_access_permission_test` VALUES ('7ee176c20c904536862da37aacb0f7c8', 'org/*', 'authc,roles[test]', 123, 0, 'gameloft9', '2017-12-27 17:04:18', NULL, '2017-12-27 17:04:18');
+INSERT INTO `sys_access_permission_test` VALUES ('6319f8a7688343139ac4ba0d40877e2c', 'sys/*', 'authc,roleOr[test,admin]', 201, 0, 'gameloft9', '2017-12-28 11:04:58', NULL, '2017-12-28 11:04:58');
+INSERT INTO `sys_access_permission_test` VALUES ('7042e4eeebf5433388ddfdfb09764369', 'log/*', 'authc,roleOr[test,admin]', 419, 0, 'gameloft9', '2017-12-27 17:04:10', NULL, '2017-12-27 17:04:10');
+INSERT INTO `sys_access_permission_test` VALUES ('7c1f21aa63cf4fd6a5be43072e81ab99', 'test/*', 'authc,roleOr[test,admin]', 135, 0, 'gameloft9', '2017-12-28 11:05:10', NULL, '2017-12-28 11:05:10');
+INSERT INTO `sys_access_permission_test` VALUES ('7ee176c20c904536862da37aacb0f7c8', 'org/*', 'authc,roleOr[test,admin]', 123, 0, 'gameloft9', '2017-12-27 17:04:18', NULL, '2017-12-27 17:04:18');
 INSERT INTO `sys_access_permission_test` VALUES ('8e68507e882c4165b06a4a9147d14a34', 'role/*', 'authc,roles[admin]', 669, 0, 'gameloft9', '2017-12-27 17:04:04', NULL, '2017-12-27 17:04:04');
+INSERT INTO `sys_access_permission_test` VALUES ('8e68507e882c4165b06a4a9147d14a34', 'menu/menuList.do', 'authc', 196, 0, 'gameloft9', '2017-12-27 17:04:04', NULL, '2017-12-27 17:04:04');
 INSERT INTO `sys_access_permission_test` VALUES ('90762decb8874ba0955eb8cef21b6682', 'menu/*', 'authc,roles[admin]', 197, 0, 'gameloft9', '2017-12-28 11:02:26', NULL, '2017-12-28 11:02:26');
 INSERT INTO `sys_access_permission_test` VALUES ('c8c4e92a1ece4da79ede1763faecdf77', 'sysUser/*', 'authc,roles[admin]', 170, 0, 'gameloft9', '2017-12-27 17:05:49', NULL, '2017-12-27 17:05:49');
 

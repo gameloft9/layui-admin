@@ -23,8 +23,9 @@ values('123','gameloft9','7C4A8D09CA3762AF61E59520943DC26494F8941B','leiyao','0'
 /*初始化数据-sys_access_permission_test*/
 insert into `sys_access_permission_test`(`ID`,`URL`,`ROLES`,`SORT`,`IS_DELETED`,`CREATE_USER`,`CREATE_TIME`,`UPDATE_USER`,`UPDATE_TIME`) values
 ('c8c4e92a1ece4da79ede1763faecdf77','/sysUser/**','authc,roles[admin]','170','0','gameloft9','2017-12-27 17:05:49',null,'2017-12-27 17:05:49'),
+('90762decb8874ba0955eb8cef21b6682','/menu/menuList.do','authc','196','0','gameloft9','2017-12-28 11:02:26',null,'2017-12-28 11:02:26'),
 ('90762decb8874ba0955eb8cef21b6682','/menu/**','authc,roles[admin]','197','0','gameloft9','2017-12-28 11:02:26',null,'2017-12-28 11:02:26'),
-('7ee176c20c904536862da37aacb0f7c8','/org/**','authc,roles[test]','123','0','gameloft9','2017-12-27 17:04:18',null,'2017-12-27 17:04:18'),
+('7ee176c20c904536862da37aacb0f7c8','/org/**','authc,roleOr[test,admin]','123','0','gameloft9','2017-12-27 17:04:18',null,'2017-12-27 17:04:18'),
 ('7c1f21aa63cf4fd6a5be43072e81ab99','/test/**','authc,roleOr[test,admin]','135','0','gameloft9','2017-12-28 11:05:10',null,'2017-12-28 11:05:10'),
 ('7042e4eeebf5433388ddfdfb09764369','/log/**','authc,roleOr[test,admin]','419','0','gameloft9','2017-12-27 17:04:10',null,'2017-12-27 17:04:10'),
 ('6319f8a7688343139ac4ba0d40877e2c','/sys/**','authc,roleOr[test,admin]','201','0','gameloft9','2017-12-28 11:04:58',null,'2017-12-28 11:04:58'),
