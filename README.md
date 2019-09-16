@@ -5,12 +5,17 @@
 [https://blog.csdn.net/GAMEloft9/article/details/79045636](https://blog.csdn.net/GAMEloft9/article/details/79045636)
 
 # 部署步骤
-后端应用部署大家应该都很熟悉了，这里仅对前后的分离下的前端部署作一个说明：
-1、修改layuicms/common/js/config.js，修改生产和测试环境的api请求地址和前端资源请求地址
+后端应用部署大家应该都很熟悉了，maven打包过后，采用spring-boot的方式启动即可。
+
+这里仅对前后的分离下的前端部署作一个说明：
+
+1、修改layuicms/common/js/config.js，修改生产和测试环境的api请求地址和前端资源请求地址。
 2、将layuicms包部署至nginx服务器上，并配置访问连接，避免发生跨域问题。
 
-如果是本地测试，可以直接将资源访问地址改成后台地址，然后启动应用后直接访问http://xxx.xxx.xxx.xxx:xxxx/manager/layuicms/login.html即可。
-layuicms在webapp目录下，因此这种方式类似于传统web开发。
+注意：
+如果是本地测试，或者不采用前后端分离的部署方式（前端工程放在webapp下面），那么api请求地址和前端资源请求地址这两个地址是一样的。
+启动应用后直接访问http://xxx.xxx.xxx.xxx:xxxx/manager/layuicms/login.html即可。
+layuicms在webapp目录下，因此这种方式类似于传统jsp web页面开发模式。
 
 # 更新说明 #
 
