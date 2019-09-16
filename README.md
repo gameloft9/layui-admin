@@ -9,7 +9,7 @@
 
 这里仅对前后的分离下的前端部署作一个说明：
 
-1、修改layuicms/common/js/config.js，修改生产和测试环境的api请求地址和前端资源请求地址。
+1、修改layuicms/config/config.js，修改生产和测试环境的api请求地址和前端资源请求地址。
 2、将layuicms包部署至nginx服务器上，并配置访问连接，避免发生跨域问题。
 
 注意：
