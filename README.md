@@ -4,6 +4,12 @@
 # 博客地址
 [https://blog.csdn.net/GAMEloft9/article/details/79045636](https://blog.csdn.net/GAMEloft9/article/details/79045636)
 
+# 本地启动
+ 1、修改config_.properties文件，补充数据源信息（jdbc.url，用户名，密码等）。 
+ 2、修改webapp/layuicms/config/config.js文件，补充api请求地址和资源托管地址 。 
+ 3、运行建表SQL和数据初始化存储过程。 
+ 最后直接运行LayuiAdminStartUp的main方法即可。
+
 # 部署步骤
 后端应用部署大家应该都很熟悉了，maven打包过后，采用spring-boot的方式启动即可。
 
