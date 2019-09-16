@@ -14,7 +14,7 @@
 
 注意：
 如果是本地测试，或者不采用前后端分离的部署方式（前端工程放在webapp下面），那么api请求地址和前端资源请求地址这两个地址是一样的。
-启动应用后直接访问http://xxx.xxx.xxx.xxx:xxxx/manager/layuicms/login.html即可。
+启动应用后直接访问http://xxx.xxx.xxx.xxx:xxxx/manager/layuicms/login.html 即可。
 layuicms在webapp目录下，因此这种方式类似于传统jsp web页面开发模式。
 
 # 更新说明 #
