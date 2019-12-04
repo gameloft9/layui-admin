@@ -224,7 +224,7 @@ public class SHA1 {
      * 测试
      * */
     public static void main(String[] args) {
-        String data = "admin123A";
+        String data = "123456";
         System.out.println(data);
         String digest = new SHA1().getDigestOfString(data.getBytes());
         System.out.println(digest);
