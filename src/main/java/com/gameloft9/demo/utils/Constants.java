@@ -81,8 +81,8 @@ public class Constants {
     }
 
     /**
-     * 初始化密码
+     * 初始化密码：123456
      * */
-    public static final String INIT_PWD = "123456";
+    public static final String INIT_PWD = "7C4A8D09CA3762AF61E59520943DC26494F8941B";
 
 }
