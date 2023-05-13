@@ -4,10 +4,11 @@
 # 博客地址
 [https://blog.csdn.net/GAMEloft9/article/details/79045636](https://blog.csdn.net/GAMEloft9/article/details/79045636)
 
-# 本地启动
- 1、修改config_.properties文件，补充数据源信息（jdbc.url，用户名，密码等）。 
- 2、修改webapp/layuicms/config/config.js文件，补充api请求地址和资源托管地址 。 
- 3、运行建表SQL和数据初始化存储过程。 
+# 本地启动步骤
+ ## 1、修改config_.properties文件，补充数据源信息（jdbc.url，用户名，密码等）。 
+ ## 2、修改webapp/layuicms/config/config.js文件，补充api请求地址和资源托管地址 。 
+ ## 3、根据数据库类型，运行对应的建表SQL和数据初始化存储过程（ORACLE有存储过程，mysql没有，在sql目录下）。 
+ ## 4、修改mapper文件，根据数据库是mysql,还是oracle注释掉相应的sql（主要是分页查询部分）
  最后直接运行LayuiAdminStartUp的main方法即可。
 
 # 部署步骤
@@ -19,8 +20,8 @@
 2、将layuicms包部署至nginx服务器上，并配置访问连接，避免发生跨域问题。
 
 注意：
-如果是本地测试，或者不采用前后端分离的部署方式（前端工程放在webapp下面），那么api请求地址和前端资源请求地址这两个地址是一样的。
-启动应用后直接访问http://xxx.xxx.xxx.xxx:xxxx/manager/layuicms/login.html 即可。
+如果是本地测试，或者不采用前后端分离的部署方式（前端工程放在webapp下面），那么api请求地址和前端资源请求地址这两个地址配置是一样的，例如：http://127.0.0.1:8888/manager/。
+启动应用后直接访问http://127.0.0.1:8888/manager/layuicms/login.html 即可。
 layuicms在webapp目录下，因此这种方式类似于传统jsp web页面开发模式。
 
 # 更新说明 #
